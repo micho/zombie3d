@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<glge>
+  <mesh id="cubeMesh">
+    <positions>1.000,1.000,1.000,1.000,1.000,-1.000,-1.000,1.000,-1.000,1.000,1.000,1.000,-1.000,1.000,-1.000,-1.000,1.000,1.000,-1.000,-1.000,-1.000,-1.000,-1.000,1.000,-1.000,1.000,1.000,-1.000,-1.000,-1.000,-1.000,1.000,1.000,-1.000,1.000,-1.000,1.000,-1.000,-1.000,1.000,-1.000,1.000,-1.000,-1.000,-1.000,1.000,-1.000,1.000,-1.000,-1.000,1.000,-1.000,-1.000,-1.000,1.000,1.000,-1.000,1.000,1.000,1.000,1.000,-1.000,-1.000,1.000,1.000,1.000,1.000,-1.000,1.000,1.000,-1.000,-1.000,1.000,1.000,1.000,-1.000,1.000,1.000,1.000,-1.000,1.000,-1.000,1.000,1.000,-1.000,-1.000,1.000,1.000,-1.000,1.000,1.000,1.000,-1.000,1.000,-1.000,-1.000,-1.000,-1.000,-1.000,1.000,1.000,-1.000,-1.000,-1.000,-1.000,-1.000,1.000,-1.000</positions>
+    <normals>0.000,1.000,0.000,0.000,1.000,0.000,0.000,1.000,0.000,0.000,1.000,0.000,0.000,1.000,0.000,0.000,1.000,0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-0.000,-1.000,-0.000,-0.000,-1.000,-0.000,-0.000,-1.000,-0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,1.000,0.000,-0.000,1.000,0.000,-0.000,1.000,0.000,-0.000,1.000,-0.000,0.000,1.000,-0.000,0.000,1.000,-0.000,0.000,-0.000,-0.000,1.000,-0.000,-0.000,1.000,-0.000,-0.000,1.000,0.000,-0.000,1.000,0.000,-0.000,1.000,0.000,-0.000,1.000,0.000,0.000,-1.000,0.000,0.000,-1.000,0.000,0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000,0.000,-0.000,-1.000</normals>;
+    <faces>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,</faces>
+  </mesh>
+  <mesh id="groundMesh">
+    <positions>1.000,1.000,0.000,-1.000,1.000,0.000,-1.000,-1.000,0.000,1.000,1.000,0.000,-1.000,-1.000,0.000,1.000,-1.000,0.000</positions>
+    <normals>-0.000,0.000,1.000,-0.000,0.000,1.000,-0.000,0.000,1.000,0.000,-0.000,1.000,0.000,-0.000,1.000,0.000,-0.000,1.000</normals>;
+    <uv1>0.000,0.000,1.000,0.000,1.000,1.000,0.000,0.000,1.000,1.000,0.000,1.000</uv1>
+    <faces>0,1,2,3,4,5,</faces>
+  </mesh>
+  
+  <mesh id="xline">
+    <positions>
+    -1000.0,0,0,
+    1000.0,0,0
+    </positions>
+  </mesh>
+  <mesh id="yline">
+    <positions>
+    0,-1000,0,
+    0,1000,0
+    </positions>
+  </mesh>
+  <mesh id="zline">
+    <positions>
+    0,0,-1000,
+    0,0,1000
+    </positions>
+  </mesh>
+  
+  
+  <material id="red" specular="0" color="#f00" shadeless="1" />
+  <material id="green" specular="0" color="#0f0" shadeless="1" />
+  <material id="blue" specular="0" color="#00f" shadeless="1" />
+  <material id="lines" specular="0" color="#444" shadeless="1" />
+  <material id="box" specular="0" color="#ccc" />
+  <material id="grass" specular="0.5">
+    <texture id="grassTexture" src="images/grass.jpg" />
+    <material_layer texture="#grassTexture" mapto="M_COLOR" scale_x="16" scale_y="16" />
+  </material>
+  <material id="wallmaterial" specular="0.5">
+    <texture id="wallcolour" src="images/grass.jpg" />
+    <material_layer texture="#wallcolour" mapto="M_COLOR" scale_x="16" scale_y="16" />
+  </material>
+
+  <scene id="mainscene" ambient_color="#fff" background_color="rgba(0,0,0,0)" fog_near="50" fog_far="60" fog_color="#555" xfog_type="FOG_LINEAR" camera="#mainCamera">
+    <physics_plane normal="PHYSICS_YAXIS">
+      <object mesh="#groundMesh" material="#grass" rot_x="-1.57" scale="100" />
+    </physics_plane>
+    <group id="graph">
+      <object id="xaxis" draw_type="DRAW_LINES" line_width="2" mesh="#xline" material="#red"  />
+      <object id="yaxis" draw_type="DRAW_LINES" line_width="2" mesh="#yline" material="#green"  />
+      <object id="zaxis" draw_type="DRAW_LINES" line_width="2" mesh="#zline" material="#blue"  />
+    </group>
+    <group id="cameraOffset">
+      <camera id="mainCamera" loc_z="40" loc_y="20" loc_x="0" rot_x="-0.5" rot_y="0" />
+    </group>
+    <physics_box id="player" loc_y="2" mass="2" width="2" depth="2" height="2">
+      <object mesh="#cubeMesh" material="#box"/>
+    </physics_box>
+    <physics_car id="car" loc_y="5.5" loc_x="10" mass="15" width="4" depth="2" height="2">
+      <object mesh="#cubeMesh" material="#box" scale_x="2"/>
+      <physics_wheel id="wheel1" loc_x="1.5" loc_z="1.2" loc_y="-0.6">
+        <object mesh="#cubeMesh" material="#box" id="wheel1obj" scale="0.75" scale_z="0.25" />
+      </physics_wheel>
+      <physics_wheel id="wheel2" loc_x="1.5" loc_z="-1.2" loc_y="-0.6">
+        <object mesh="#cubeMesh" material="#box" id="wheel2obj" scale="0.75" scale_z="0.25" />
+      </physics_wheel>
+      <physics_wheel id="wheel3" powered="TRUE" loc_x="-1.5" loc_z="1.2" loc_y="-0.6">
+        <object mesh="#cubeMesh" material="#box" id="wheel3obj" scale="0.75" scale_z="0.25" />
+      </physics_wheel>
+      <physics_wheel id="wheel4" powered="TRUE" loc_x="-1.5" loc_z="-1.2" loc_y="-0.6">
+        <object mesh="#cubeMesh" material="#box" id="wheel4obj" scale="0.75" scale_z="0.25" />
+      </physics_wheel>
+    </physics_car>
+    <light id="light" loc_x="-10" loc_y="20" loc_z="-5" rot_x="-1.3" attenuation_constant="5" type="L_POINT" />
+    <light id="light" loc_x="-10" loc_y="20" loc_z="10" rot_x="-1.3" attenuation_constant="5" type="L_POINT" />
+  </scene>
+</glge>
