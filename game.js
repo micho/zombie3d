@@ -37,6 +37,28 @@ app = {
       this.grounded = true;
     });
 
+    var ogroColor = new GLGE.Texture({ Src: "skin.jpg" });
+    var ogroMaterial = new GLGE.Material({ Specular: 0 })
+      .addMaterialLayer(new GLGE.MaterialLayer({
+        Texture: ogroColor,
+        Mapinput: GLGE.UV1,
+        Mapto: GLGE.M_COLOR
+      }))
+      .addTexture(ogroColor);
+
+    /*
+    this.ogro = new GLGE.MD2({
+      Src: "ogro.md2",
+      Material: ogroMaterial,
+      MD2Animation: "stand",
+      Scale: 0.1,
+      LocY: 2.2,
+      RotX: -1.57
+    });
+    */
+
+    //this.scene.addObject(this.ogro);
+
     // Start rendering
     this.render.call(this);
   },
@@ -63,9 +85,19 @@ app = {
     if (this.keys.isKeyPressed(GLGE.KI_W)) {
       this.player.setVelocityX(playerMat[0] * speed);
       this.player.setVelocityZ(playerMat[2] * -speed);
+      if (this.player.children[0].MD2Anim !== "run") {
+        this.player.children[0].setMD2Animation("run");
+      }
     } else if (this.keys.isKeyPressed(GLGE.KI_S)) {
       this.player.setVelocityX(playerMat[0] * -speed);
       this.player.setVelocityZ(playerMat[2] * speed);
+      if (this.player.children[0].MD2Anim !== "run") {
+        this.player.children[0].setMD2Animation("run");
+      }
+    } else {
+      if (this.player.children[0].MD2Anim !== "stand") {
+        this.player.children[0].setMD2Animation("stand");
+      }
     }
 
     if (this.keys.isKeyPressed(GLGE.KI_A)) {

@@ -22,6 +22,11 @@
     <texture id="wallcolour" src="images/grass.jpg" />
     <material_layer texture="#wallcolour" mapto="M_COLOR" scale_x="16" scale_y="16" />
   </material>
+ 
+  <material id="ogroMat" specular="0">
+    <texture id="ogrocolour" src="skin.jpg" />
+    <material_layer texture="#ogrocolour" mapinput="UV1" mapto="M_COLOR" />
+  </material>
 
   <scene id="mainscene" ambient_color="#fff" background_color="rgba(0,0,0,0)" fog_near="50" fog_far="60" fog_color="#555" xfog_type="FOG_LINEAR" camera="#mainCamera">
     <physics_plane normal="PHYSICS_YAXIS">
@@ -32,7 +37,8 @@
     </group>
     <!-- player is sphere so contact with the ground works as expected (no tilting) -->
     <physics_sphere id="player" loc_y="2" mass="20" radius="1">
-      <collada document="player.dae" />
+      <!--<collada document="player.dae" />-->
+      <MD2 id="model" src="ogro.md2" MD2_animation="stand" material="#ogroMat" scale="0.05" loc_y="0.2" rot_x="-1.57" />
     </physics_sphere>
     <physics_car id="car" loc_y="5.5" loc_x="10" mass="15" width="4" depth="2" height="2">
       <object mesh="#cubeMesh" material="#box" scale_x="2"/>
