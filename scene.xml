@@ -30,7 +30,7 @@
     <group id="cameraOffset">
       <camera id="mainCamera" loc_z="40" loc_y="20" loc_x="0" rot_x="-0.5" rot_y="0" />
     </group>
-    <physics_box id="player" loc_y="2" mass="2" width="2" depth="2" height="2">
+    <physics_box id="player" loc_y="2" mass="20" width="2" depth="2" height="2">
       <object mesh="#cubeMesh" material="#box"/>
     </physics_box>
     <physics_car id="car" loc_y="5.5" loc_x="10" mass="15" width="4" depth="2" height="2">
