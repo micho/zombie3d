@@ -81,7 +81,13 @@ app = {
       }
     }
 
+    if (this.keys.isKeyPressed(GLGE.KI_CTRL)) {
+      this.fire();
+    }
   },
+  fire: _.throttle(function () {
+    console.log("control");
+  }, 300),
   cameraFollow: function () {
     this.camera.setLocX(this.player.locX);
     this.camera.setLocZ(this.player.locZ + 40);
