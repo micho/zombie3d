@@ -11,30 +11,7 @@
     <uv1>0.000,0.000,1.000,0.000,1.000,1.000,0.000,0.000,1.000,1.000,0.000,1.000</uv1>
     <faces>0,1,2,3,4,5,</faces>
   </mesh>
-  
-  <mesh id="xline">
-    <positions>
-    -1000.0,0,0,
-    1000.0,0,0
-    </positions>
-  </mesh>
-  <mesh id="yline">
-    <positions>
-    0,-1000,0,
-    0,1000,0
-    </positions>
-  </mesh>
-  <mesh id="zline">
-    <positions>
-    0,0,-1000,
-    0,0,1000
-    </positions>
-  </mesh>
-  
-  
-  <material id="red" specular="0" color="#f00" shadeless="1" />
-  <material id="green" specular="0" color="#0f0" shadeless="1" />
-  <material id="blue" specular="0" color="#00f" shadeless="1" />
+
   <material id="lines" specular="0" color="#444" shadeless="1" />
   <material id="box" specular="0" color="#ccc" />
   <material id="grass" specular="0.5">
@@ -50,11 +27,6 @@
     <physics_plane normal="PHYSICS_YAXIS">
       <object mesh="#groundMesh" material="#grass" rot_x="-1.57" scale="100" />
     </physics_plane>
-    <group id="graph">
-      <object id="xaxis" draw_type="DRAW_LINES" line_width="2" mesh="#xline" material="#red"  />
-      <object id="yaxis" draw_type="DRAW_LINES" line_width="2" mesh="#yline" material="#green"  />
-      <object id="zaxis" draw_type="DRAW_LINES" line_width="2" mesh="#zline" material="#blue"  />
-    </group>
     <group id="cameraOffset">
       <camera id="mainCamera" loc_z="40" loc_y="20" loc_x="0" rot_x="-0.5" rot_y="0" />
     </group>
