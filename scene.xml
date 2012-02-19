@@ -30,9 +30,10 @@
     <group id="cameraOffset">
       <camera id="mainCamera" loc_z="40" loc_y="20" loc_x="0" rot_x="-0.5" rot_y="0" />
     </group>
-    <physics_box id="player" loc_y="2" mass="20" width="2" depth="2" height="2">
-      <object mesh="#cubeMesh" material="#box"/>
-    </physics_box>
+    <!-- player is sphere so contact with the ground works as expected (no tilting) -->
+    <physics_sphere id="player" loc_y="2" mass="20" radius="1">
+      <collada document="player.dae" />
+    </physics_sphere>
     <physics_car id="car" loc_y="5.5" loc_x="10" mass="15" width="4" depth="2" height="2">
       <object mesh="#cubeMesh" material="#box" scale_x="2"/>
       <physics_wheel id="wheel1" loc_x="1.5" loc_z="1.2" loc_y="-0.6">

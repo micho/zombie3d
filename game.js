@@ -29,7 +29,7 @@ app = {
     this.renderer.render();
     //this.player.setType(GLGE.PHYSICS_LOC);
     this.player.setRotationalVelocityDamping([0, 0.1, 0]);
-    this.player.setLinearVelocityDamping([0.95, 11, 0.95]);
+    this.player.setLinearVelocityDamping([0.7, 11, 0.7]);
     this.player.setFriction(0);
 
     this.player.grounded = true;
@@ -56,20 +56,22 @@ app = {
     window.requestAnimationFrame(this.render.bind(this));
   },
   processInput: function () {
-    var playerMat = this.player.getModelMatrix();
+    var playerMat = this.player.getModelMatrix(),
+        speed = 10,
+        rotSpeed = 600;
 
     if (this.keys.isKeyPressed(GLGE.KI_W)) {
-      this.player.setVelocityX(playerMat[0] * 5);
-      this.player.setVelocityZ(playerMat[2] * -5);
+      this.player.setVelocityX(playerMat[0] * speed);
+      this.player.setVelocityZ(playerMat[2] * -speed);
     } else if (this.keys.isKeyPressed(GLGE.KI_S)) {
-      this.player.setVelocityX(playerMat[0] * -5);
-      this.player.setVelocityZ(playerMat[2] * 5);
+      this.player.setVelocityX(playerMat[0] * -speed);
+      this.player.setVelocityZ(playerMat[2] * speed);
     }
 
     if (this.keys.isKeyPressed(GLGE.KI_A)) {
-      this.player.addBodyTorque([0, 500, 0]);
+      this.player.addBodyTorque([0, rotSpeed, 0]);
     } else if (this.keys.isKeyPressed(GLGE.KI_D)) {
-      this.player.addBodyTorque([0, -500, 0]);
+      this.player.addBodyTorque([0, -rotSpeed, 0]);
     }
 
     if (this.keys.isKeyPressed(GLGE.KI_SPACE)) {
