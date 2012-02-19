@@ -39,7 +39,10 @@ app = {
       speed = 0;
     }
     if (this.keys.isKeyPressed(GLGE.KI_SPACE)) {
-      console.log('jump!');
+      this.playShot = this.playShot || _.throttle(function () {
+        (new Audio("shot.mp3")).play();
+      }, 300);
+      this.playShot();
     }
     if (this.keys.isKeyPressed(GLGE.KI_A)) {
       rot = 2;
