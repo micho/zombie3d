@@ -85,18 +85,21 @@ app = {
     if (this.keys.isKeyPressed(GLGE.KI_W)) {
       this.player.setVelocityX(playerMat[0] * speed);
       this.player.setVelocityZ(playerMat[2] * -speed);
-      if (this.player.children[0].MD2Anim !== "run") {
+      if (this.player.grounded && this.player.children[0].MD2Anim !== "run") {
         this.player.children[0].setMD2Animation("run");
+        this.player.children[0].setMD2FrameRate(6);
       }
     } else if (this.keys.isKeyPressed(GLGE.KI_S)) {
       this.player.setVelocityX(playerMat[0] * -speed);
       this.player.setVelocityZ(playerMat[2] * speed);
-      if (this.player.children[0].MD2Anim !== "run") {
+      if (this.player.grounded && this.player.children[0].MD2Anim !== "run") {
         this.player.children[0].setMD2Animation("run");
+        this.player.children[0].setMD2FrameRate(6);
       }
     } else {
       if (this.player.children[0].MD2Anim !== "stand") {
         this.player.children[0].setMD2Animation("stand");
+        this.player.children[0].setMD2FrameRate(6);
       }
     }
 
@@ -110,6 +113,10 @@ app = {
       if (this.player.grounded) {
         this.player.grounded = false;
         this.player.setVelocityY(10);
+      }
+      if (this.player.children[0].MD2Anim !== "jump") {
+        this.player.children[0].setMD2Animation("jump");
+        this.player.children[0].setMD2FrameRate(3);
       }
     }
 
